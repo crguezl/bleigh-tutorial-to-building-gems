@@ -185,6 +185,7 @@ STEPS
 
       Make your library easier for contributors to join by providing
       familiar patterns and locations for code
+
 12 * When you package up your new rubygem to share with the world, you
     need to be careful with the files you place directly in lib/.
     Rubygems (and almost all other ruby package mangers) will add your
@@ -217,4 +218,29 @@ STEPS
     you intend for people to require them separately. Namespace internal
     dependency files that you don’t expect for people to require directly.
 
+13 * There are two types of gem dependencies, 
+    runtime dependencies and development dependencies. 
+    
+    Runtime dependencies are libraries that
+    your gem needs in order to function. 
+
+    Development dependencies, on the other hand, are gems that are only 
+    needed by people who are going to contribute to the code of the gem. 
+
+    Gems are, by default, installed only with the runtime dependencies. 
+
+14 * Semantic Versioning (http://semver.org/)
+
+     A normal version number MUST take the form X.Y.Z where X, Y, and Z
+     are non-negative integers. 
+     X is the major version, 
+     Y is the minor version, and 
+     Z is the patch version. 
+     Each element MUST increase numerically by increments of one. 
+     For instance: 1.9.0 -> 1.10.0 -> 1.11.0.
+
+     '~>' is called "spermy operator"
+     "~> 2.3" means "equal to 2.3 or greater than 2.3, but less than 3.0", 
+     while "~> 2.3.0" would mean "equal to 2.3.0 or greater than 2.3.0, 
+     but less than 2.4.0".
 

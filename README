@@ -1,0 +1,79 @@
+http://www.intridea.com/blog/2012/3/8/polishing-rubies-part-i
+http://www.intridea.com/blog/2012/3/15/polishing-rubies-part-ii
+
+path where I have worked: 
+
+/Users/casiano/Dropbox/src/ruby/building_gems/bleigh_tutorial_to_building_gems/my-gem
+
+STEPS
+
+1 *
+  $ bundle gem my-gem
+        create  my-gem/Gemfile
+        create  my-gem/Rakefile
+        create  my-gem/LICENSE.txt
+        create  my-gem/README.md
+        create  my-gem/.gitignore
+        create  my-gem/my-gem.gemspec
+        create  my-gem/lib/my-gem.rb
+        create  my-gem/lib/my-gem/version.rb
+  Initializating git repo in /Users/casiano/Dropbox/src/ruby/building_gems/bleigh_tutorial_to_building_gems/my-gem
+
+
+2 *
+  $ cd my-gem/
+  $ ls -la
+  total 48
+  drwxrwxr-x  10 casiano  staff   340 18 oct 16:12 .
+  drwxrwxr-x   6 casiano  staff   204 18 oct 16:13 ..
+  drwxrwxr-x  10 casiano  staff   340 18 oct 16:12 .git
+  -rw-rw-r--   1 casiano  staff   154 18 oct 16:12 .gitignore
+  -rw-rw-r--   1 casiano  staff    91 18 oct 16:12 Gemfile
+  -rw-rw-r--   1 casiano  staff  1078 18 oct 16:12 LICENSE.txt
+  -rw-rw-r--   1 casiano  staff   495 18 oct 16:12 README.md
+  -rw-rw-r--   1 casiano  staff    28 18 oct 16:12 Rakefile
+  drwxrwxr-x   4 casiano  staff   136 18 oct 16:12 lib
+  -rw-rw-r--   1 casiano  staff   717 18 oct 16:12 my-gem.gemspec
+
+3 *
+  $ git status -s
+  A  .gitignore
+  A  Gemfile
+  A  LICENSE.txt
+  A  README.md
+  A  Rakefile
+  A  lib/my-gem.rb
+  A  lib/my-gem/version.rb
+  A  my-gem.gemspec
+
+4 *
+  $ git commit -m 'vreated structure with "bundle gem my-gem"'
+  [master (root-commit) e438015] vreated structure with "bundle gem my-gem"
+   8 files changed, 104 insertions(+)
+   create mode 100644 .gitignore
+   create mode 100644 Gemfile
+   create mode 100644 LICENSE.txt
+   create mode 100644 README.md
+   create mode 100644 Rakefile
+   create mode 100644 lib/my-gem.rb
+   create mode 100644 lib/my-gem/version.rb
+   create mode 100644 my-gem.gemspec
+  $ git status -s
+  $ 
+
+5 * Sign up in rubygems.org: 
+        https://rubygems.org/users/new
+     Definition: sign-up
+      noun [ usu. as modifier ]
+      the action of enrolling for something or of enrolling or employing
+      someone: a sign-up fee of $29.95.
+    and then sign-in (https://rubygems.org/dashboard
+
+6 * Use gem yank to yank (remove) old gems 
+         $ gem yank hola_casiano -v 0.0.1
+
+7 * Edit the gemspec file and introduce the required modifications:
+
+  $ vi my-gem.gemspec 
+
+

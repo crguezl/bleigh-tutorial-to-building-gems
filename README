@@ -343,12 +343,144 @@ STEPS
      my_gem with your gem's name) and put this in it:
 
      require 'spec_helper'
+     require 'my-gem'
 
      describe MyGem do
        it 'requires additional testing'
      end
 
 20 * 
-      $ vi spec/my_gem_spec.rb
-      $ git add spec/my_gem_spec.rb
+        $ cat Rakefile
+        $:.unshift File.dirname(__FILE__) + 'lib'
+        require "bundler/gem_tasks"
+
+        require 'rspec/core/rake_task'
+        RSpec::Core::RakeTask.new
+        task :default => :spec
+
+21 *
+
+        $ rake -T
+        rake build    # Build my-gem-0.0.1.gem into the pkg directory
+        rake install  # Build and install my-gem-0.0.1.gem into system gems
+        rake release  # Create tag v0.0.1 and build and push my-gem-0.0.1.gem to Rubygems
+        rake spec     # Run RSpec code examples
+
+22 *
+        $ rake
+        /usr/local/Cellar/ruby/1.9.3-p125/bin/ruby -S rspec ./spec/my_gem_spec.rb
+        Run options: include {:focus=>true}
+
+        All examples were filtered out; ignoring {:focus=>true}
+        *
+
+        Pending:
+          MyGem requires additional testing
+            # Not yet implemented
+            # ./spec/my_gem_spec.rb:5
+
+        Finished in 0.00023 seconds
+        1 example, 0 failures, 1 pending
+
+        Randomized with seed 30724
+
+23 * Installing guard:
+
+        $ cat Gemfile
+        source 'https://rubygems.org'
+
+        # Specify your gem's dependencies in my-gem.gemspec
+        gemspec
+        gem 'guard'
+        gem 'guard-rspec'
+        gem 'guard-bundler'
+
+24 * Run bundle
+
+25 * Guard works similarly to Bundler and Rake by creating a Guardfile 
+     in your project's root directory. These commands automatically add
+     example configuration for each guard type to the Guardfile (after
+     guard init creates the file to begin with). 
+
+          $ cat Guardfile 
+          guard 'bundler' do
+            watch('Gemfile')
+            watch(/^.+\.gemspec/)
+          end
+
+          guard 'rspec', :version => 2 do
+            watch(%r{^spec/.+_spec\.rb$})
+            watch(%r{^lib/(.+)\.rb$})     { |m| "spec/#{m[1]}_spec.rb" }
+            watch('spec/spec_helper.rb')  { "spec" }
+          end
+
+26 * Guard works by watching certain files in your project and then
+     performing actions when those files change. The first guard tells
+     us to watch for the Gemfile and the gemspec to change, and re-bundle
+     the application when that happens. The second guard tells us to
+     watch all of our RSpec test files, our spec_helper, and the
+     corresponding library files for each of our RSpec tests. This means
+     that when you change a file, Guard can automatically re-run the
+     tests for that specific file only.
+
+     Now that your Guardfile is properly configured, you can just run
+                     bundle exec guard 
+     from your project's root directory. This will get
+     Guard up and running and you will now automatically run tests and
+     re-bundle as you build your gem. Running Guard makes the development
+     feedback loop as tight and automatic as possible.
+
+    $ bundle exec guard
+    Guard could not detect any of the supported notification libraries.
+    Guard is now watching at 
+      '/Users/casiano/Dropbox/src/ruby/building_gems/blei.../my-gem'
+    Bundle already up-to-date
+    Guard::RSpec is running, with RSpec 2!
+    Running all specs
+    Run options: include {:focus=>true}
+
+    All examples were filtered out; ignoring {:focus=>true}
+    *
+
+    Pending:
+      MyGem requires additional testing
+        # Not yet implemented
+        # ./spec/my_gem_spec.rb:5
+
+    Finished in 0.00032 seconds
+    1 example, 0 failures, 1 pending
+
+    Randomized with seed 58712
+
+    [Listen warning]:
+      Listen will be polling changes. 
+      Learn more at https://github.com/guard/listen#polling-fallback.
+
+    Running: spec/my_gem_spec.rb
+    Run options: include {:focus=>true}
+
+    All examples were filtered out; ignoring {:focus=>true}
+    *
+
+27 * Continuous Integration
+
+     Continuous Integration is the process of automatically running
+     the tests for a project when new code is pushed to the central
+     repository. Luckily, a team of developers has built Travis CI
+     that provides free continuous integration for open source
+     projects of all types.
+     Travis allows you to test your code across multiple versions 
+     of Ruby. 
+
+
+     a) Go to http://travis-ci.org and sign in with your GitHub account.
+     Travis needs access to your GitHub info to be able to set up the
+     automatic build process for each repository.
+
+     b) Hover over your name once logged in and go to your profile. This
+     lists out your open source repositories; from here you can simply
+     "switch on" CI for each project.
+
+     c) Set up a .travis.yml file in your project.
+
 

@@ -20,81 +20,77 @@ http://www.intridea.com/blog/2012/3/15/polishing-rubies-part-ii
         create  my-gem/my-gem.gemspec
         create  my-gem/lib/my-gem.rb
         create  my-gem/lib/my-gem/version.rb
-  Initializating git repo in /Users/casiano/Dropbox/src/ruby/building_gems/bleigh_tutorial_to_building_gems/my-gem
+        Initializating git repo in /Users/casiano/Dropbox/src/ruby/building_gems/bleigh_tutorial_to_building_gems/my-gem
 
 
 ## 2 *
-  $ cd my-gem/
-  $ ls -la
-  total 48
-  drwxrwxr-x  10 casiano  staff   340 18 oct 16:12 .
-  drwxrwxr-x   6 casiano  staff   204 18 oct 16:13 ..
-  drwxrwxr-x  10 casiano  staff   340 18 oct 16:12 .git
-  -rw-rw-r--   1 casiano  staff   154 18 oct 16:12 .gitignore
-  -rw-rw-r--   1 casiano  staff    91 18 oct 16:12 Gemfile
-  -rw-rw-r--   1 casiano  staff  1078 18 oct 16:12 LICENSE.txt
-  -rw-rw-r--   1 casiano  staff   495 18 oct 16:12 README.md
-  -rw-rw-r--   1 casiano  staff    28 18 oct 16:12 Rakefile
-  drwxrwxr-x   4 casiano  staff   136 18 oct 16:12 lib
-  -rw-rw-r--   1 casiano  staff   717 18 oct 16:12 my-gem.gemspec
+      $ cd my-gem/
+      $ ls -la
+      total 48
+      drwxrwxr-x  10 casiano  staff   340 18 oct 16:12 .
+      drwxrwxr-x   6 casiano  staff   204 18 oct 16:13 ..
+      drwxrwxr-x  10 casiano  staff   340 18 oct 16:12 .git
+      -rw-rw-r--   1 casiano  staff   154 18 oct 16:12 .gitignore
+      -rw-rw-r--   1 casiano  staff    91 18 oct 16:12 Gemfile
+      -rw-rw-r--   1 casiano  staff  1078 18 oct 16:12 LICENSE.txt
+      -rw-rw-r--   1 casiano  staff   495 18 oct 16:12 README.md
+      -rw-rw-r--   1 casiano  staff    28 18 oct 16:12 Rakefile
+      drwxrwxr-x   4 casiano  staff   136 18 oct 16:12 lib
+      -rw-rw-r--   1 casiano  staff   717 18 oct 16:12 my-gem.gemspec
 
 ## 3 *
-  $ git status -s
-  A  .gitignore
-  A  Gemfile
-  A  LICENSE.txt
-  A  README.md
-  A  Rakefile
-  A  lib/my-gem.rb
-  A  lib/my-gem/version.rb
-  A  my-gem.gemspec
+        $ git status -s
+        A  .gitignore
+        A  Gemfile
+        A  LICENSE.txt
+        A  README.md
+        A  Rakefile
+        A  lib/my-gem.rb
+        A  lib/my-gem/version.rb
+        A  my-gem.gemspec
 
 ## 4 *
-  $ git commit -m 'vreated structure with "bundle gem my-gem"'
-  [master (root-commit) e438015] vreated structure with "bundle gem my-gem"
-   8 files changed, 104 insertions(+)
-   create mode 100644 .gitignore
-   create mode 100644 Gemfile
-   create mode 100644 LICENSE.txt
-   create mode 100644 README.md
-   create mode 100644 Rakefile
-   create mode 100644 lib/my-gem.rb
-   create mode 100644 lib/my-gem/version.rb
-   create mode 100644 my-gem.gemspec
-  $ git status -s
-  $ 
+        $ git commit -m 'vreated structure with "bundle gem my-gem"'
+        [master (root-commit) e438015] vreated structure with "bundle gem my-gem"
+         8 files changed, 104 insertions(+)
+         create mode 100644 .gitignore
+         create mode 100644 Gemfile
+         create mode 100644 LICENSE.txt
+         create mode 100644 README.md
+         create mode 100644 Rakefile
+         create mode 100644 lib/my-gem.rb
+         create mode 100644 lib/my-gem/version.rb
+         create mode 100644 my-gem.gemspec
+        $ git status -s
+        $ 
 
-## 5 * Sign up in rubygems.org: 
-        https://rubygems.org/users/new
-     Definition: sign-up
-      noun [ usu. as modifier ]
-      the action of enrolling for something or of enrolling or employing
-      someone: a sign-up fee of $29.95.
-    and then sign-in (https://rubygems.org/dashboard
+## 5 * Sign up in rubygems.org and then sign-in 
 
 ## 6 * Use gem yank to yank (remove) old gems 
-         $ gem yank hola_casiano -v 0.0.1
 
-## 7 * $ cat -n my-gem.gemspec 
-     1  # -*- encoding: utf-8 -*-
-     2  lib = File.expand_path('../lib', __FILE__)
-     3  $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-     4  require 'my-gem/version'
-     5  
-     6  Gem::Specification.new do |gem|
-     7    gem.name          = "my-gem"
-     8    gem.version       = My::Gem::VERSION
-     9    gem.authors       = ["Casiano Rodriguez Leon"]
-    10    gem.email         = ["casiano.rodriguez.leon@gmail.com"]
-    11    gem.description   = %q{TODO: Write a gem description}
-    12    gem.summary       = %q{TODO: Write a gem summary}
-    13    gem.homepage      = ""
-    14  
-    15    gem.files         = `git ls-files`.split($/)
-    16    gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-    17    gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-    18    gem.require_paths = ["lib"]
-    19  end
+           $ gem yank hola_casiano -v 0.0.1
+
+## 7 * 
+         $ cat -n my-gem.gemspec 
+         1  # -*- encoding: utf-8 -*-
+         2  lib = File.expand_path('../lib', __FILE__)
+         3  $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+         4  require 'my-gem/version'
+         5  
+         6  Gem::Specification.new do |gem|
+         7    gem.name          = "my-gem"
+         8    gem.version       = My::Gem::VERSION
+         9    gem.authors       = ["Casiano Rodriguez Leon"]
+        10    gem.email         = ["casiano.rodriguez.leon@gmail.com"]
+        11    gem.description   = %q{TODO: Write a gem description}
+        12    gem.summary       = %q{TODO: Write a gem summary}
+        13    gem.homepage      = ""
+        14  
+        15    gem.files         = `git ls-files`.split($/)
+        16    gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+        17    gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+        18    gem.require_paths = ["lib"]
+        19  end
 
 ## 8 * The last step of our initial setup is to ensure that the constant
     and folder names generated by Bundler matches the constant and

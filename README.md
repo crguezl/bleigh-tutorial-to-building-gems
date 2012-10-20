@@ -120,7 +120,9 @@ http://www.intridea.com/blog/2012/3/15/polishing-rubies-part-ii
                       lib/my_gem/version.rb
    even though my gem's name is my-gem.
 
-## 10 * When Bundler generates our gem (if we have dashes in the name) 
+## 10 * 
+
+    When Bundler generates our gem (if we have dashes in the name) 
     it creates a folder inside the lib directory of the same name. I
     would recommend modifying this to use underscores in place of dashes.
     To do this, we will need to do the following:
@@ -131,53 +133,53 @@ http://www.intridea.com/blog/2012/3/15/polishing-rubies-part-ii
       Alter the require in the gemspec file to use the underscored
         directory name.
 
-    $ cd lib
-    $ git mv my-gem my_gem
-    $ vi my-gem.rb 
-    $ git diff my-gem.rb
-    diff --git a/lib/my-gem.rb b/lib/my-gem.rb
-    index b3ecddc..7deb65a 100644
-    --- a/lib/my-gem.rb
-    +++ b/lib/my-gem.rb
-    @@ -1,4 +1,4 @@
-    -require "my-gem/version"
-    +require "my_gem/version"
-     
-     module My
-       module Gem
-    $ cd ..
-    $ vi my-gem.gemspec 
-    $ git diff my-gem.gemspec
-    diff --git a/my-gem.gemspec b/my-gem.gemspec
-    index 4a98e0d..4d53936 100644
-    --- a/my-gem.gemspec
-    +++ b/my-gem.gemspec
-    @@ -1,7 +1,7 @@
-     # -*- encoding: utf-8 -*-
-     lib = File.expand_path('../lib', __FILE__)
-     $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-    -require 'my-gem/version'
-    +require 'my_gem/version'
-     
-    $ git status -s
-     M README
-     M lib/my-gem.rb
-    R  lib/my-gem/version.rb -> lib/my_gem/version.rb
-     M my-gem.gemspec
+        $ cd lib
+        $ git mv my-gem my_gem
+        $ vi my-gem.rb 
+        $ git diff my-gem.rb
+        diff --git a/lib/my-gem.rb b/lib/my-gem.rb
+        index b3ecddc..7deb65a 100644
+        --- a/lib/my-gem.rb
+        +++ b/lib/my-gem.rb
+        @@ -1,4 +1,4 @@
+        -require "my-gem/version"
+        +require "my_gem/version"
+         
+         module My
+           module Gem
+        $ cd ..
+        $ vi my-gem.gemspec 
+        $ git diff my-gem.gemspec
+        diff --git a/my-gem.gemspec b/my-gem.gemspec
+        index 4a98e0d..4d53936 100644
+        --- a/my-gem.gemspec
+        +++ b/my-gem.gemspec
+        @@ -1,7 +1,7 @@
+         # -*- encoding: utf-8 -*-
+         lib = File.expand_path('../lib', __FILE__)
+         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+        -require 'my-gem/version'
+        +require 'my_gem/version'
+         
+        $ git status -s
+         M README
+         M lib/my-gem.rb
+        R  lib/my-gem/version.rb -> lib/my_gem/version.rb
+         M my-gem.gemspec
 
-     Gem::Specification.new do |gem|
-       gem.name          = "my-gem"
+         Gem::Specification.new do |gem|
+           gem.name          = "my-gem"
 
 
 
-   Also:
+       Also:
 
-           $ cat lib/my-gem.rb 
-           require "my_gem/version"
+               $ cat lib/my-gem.rb 
+               require "my_gem/version"
 
-           module MyGem
-               # Your code goes here...
-           end
+               module MyGem
+                   # Your code goes here...
+               end
 
            $ cat lib/my_gem/version.rb 
            module MyGem

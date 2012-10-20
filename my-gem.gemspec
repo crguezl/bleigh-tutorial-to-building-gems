@@ -5,7 +5,7 @@ require 'my_gem/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "my-gem"
-  gem.version       = My::Gem::VERSION
+  gem.version       = MyGem::VERSION
   gem.authors       = ["Casiano Rodriguez Leon"]
   gem.email         = ["casiano.rodriguez.leon@gmail.com"]
   gem.description   = %q{TODO: Write a gem description}
@@ -18,5 +18,5 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency 'rails'
-  gem.add_development_dependency 'rspec', '~>2.7'
+  gem.add_development_dependency 'rspec', '~>2.11'
 end

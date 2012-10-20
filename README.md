@@ -11,7 +11,7 @@ http://www.intridea.com/blog/2012/3/15/polishing-rubies-part-ii
 
 ## 1 *
 
-  $ bundle gem my-gem
+      $ bundle gem my-gem
         create  my-gem/Gemfile
         create  my-gem/Rakefile
         create  my-gem/LICENSE.txt

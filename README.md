@@ -118,7 +118,7 @@ http://www.intridea.com/blog/2012/3/15/polishing-rubies-part-ii
    names.
    So if I have a constant called MyGem::VERSION it should be located in 
                       lib/my_gem/version.rb
-   even though my gem's name is my-gem.
+   even though my gems name is my-gem.
 
 ## 10 * 
 
